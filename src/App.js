@@ -13,7 +13,6 @@ function App() {
   const [user, setUser] = useState(null);
   const [books, setBooks] = useState([]);
   const [ready, setReady] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [model, setModel] = useState(null);
 
   useEffect(() => {
@@ -71,7 +70,6 @@ function App() {
   // }, []);
 
   const recommend = async (userId) => {
-    setLoading(true);
     let user = tf.fill([book_len], Number(userId));
 
     console.log(`Recommending for User: ${userId}`);
@@ -87,7 +85,6 @@ function App() {
 
       pred_tensor = tf.tensor(pred); //create a new tensor
     }
-    setLoading(false);
     return recommendations;
   };
 
@@ -115,10 +112,8 @@ function App() {
           </Col>
         ))}
       </Row>
-      --{JSON.stringify(loading)}---
       {!ready && <p>TF model is loading....</p>}
-      {loading && <p>loading predictions....</p>}
-      {ready && !loading && (
+      {ready && (
         <Form style={{ marginTop: 24 }} layout="inline" onFinish={onLogin}>
           <Form.Item label="Login as user" name="user">
             <Input />
