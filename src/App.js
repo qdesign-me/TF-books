@@ -121,7 +121,7 @@ function App() {
       {ready && !loading && (
         <Form style={{ marginTop: 24 }} layout="inline" onFinish={onLogin}>
           <Form.Item label="Login as user" name="user">
-            <Input placeholder="User Id cannot be greater than 53,424 or less than 0!" />
+            <Input />
           </Form.Item>
           <Button type="primary" htmlType="submit">
             Submit
